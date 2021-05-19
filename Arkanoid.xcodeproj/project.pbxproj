@@ -1,0 +1,384 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		72740F1926386F9E0009ABBA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72740F1826386F9E0009ABBA /* AppDelegate.swift */; };
+		72740F1B26386F9E0009ABBA /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 72740F1A26386F9E0009ABBA /* GameScene.sks */; };
+		72740F1D26386F9E0009ABBA /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 72740F1C26386F9E0009ABBA /* Actions.sks */; };
+		72740F1F26386F9E0009ABBA /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72740F1E26386F9E0009ABBA /* GameScene.swift */; };
+		72740F2126386F9E0009ABBA /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72740F2026386F9E0009ABBA /* GameViewController.swift */; };
+		72740F2426386F9E0009ABBA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72740F2226386F9E0009ABBA /* Main.storyboard */; };
+		72740F2626386F9F0009ABBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72740F2526386F9F0009ABBA /* Assets.xcassets */; };
+		72B397C8264449B2002936DE /* GameScene+Creations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B397C7264449B2002936DE /* GameScene+Creations.swift */; };
+		72B397D0264449DA002936DE /* GameScene+PhysicsContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B397CF264449DA002936DE /* GameScene+PhysicsContacts.swift */; };
+		72E6465D265268E100A6AB6D /* iomanoid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 72E6465C265268E100A6AB6D /* iomanoid.ttf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		72740F1526386F9E0009ABBA /* Arkanoid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arkanoid.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		72740F1826386F9E0009ABBA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		72740F1A26386F9E0009ABBA /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		72740F1C26386F9E0009ABBA /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		72740F1E26386F9E0009ABBA /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		72740F2026386F9E0009ABBA /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		72740F2326386F9E0009ABBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		72740F2526386F9F0009ABBA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		72740F2726386F9F0009ABBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		72B397C7264449B2002936DE /* GameScene+Creations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameScene+Creations.swift"; sourceTree = "<group>"; };
+		72B397CF264449DA002936DE /* GameScene+PhysicsContacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameScene+PhysicsContacts.swift"; sourceTree = "<group>"; };
+		72E6465C265268E100A6AB6D /* iomanoid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iomanoid.ttf; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		72740F1226386F9E0009ABBA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		72740F0C26386F9D0009ABBA = {
+			isa = PBXGroup;
+			children = (
+				72740F1726386F9E0009ABBA /* Arkanoid */,
+				72740F1626386F9E0009ABBA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		72740F1626386F9E0009ABBA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				72740F1526386F9E0009ABBA /* Arkanoid.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		72740F1726386F9E0009ABBA /* Arkanoid */ = {
+			isa = PBXGroup;
+			children = (
+				72E6465B265268A100A6AB6D /* Fonts */,
+				72740F1826386F9E0009ABBA /* AppDelegate.swift */,
+				72740F1A26386F9E0009ABBA /* GameScene.sks */,
+				72740F1C26386F9E0009ABBA /* Actions.sks */,
+				72740F1E26386F9E0009ABBA /* GameScene.swift */,
+				72B397C7264449B2002936DE /* GameScene+Creations.swift */,
+				72B397CF264449DA002936DE /* GameScene+PhysicsContacts.swift */,
+				72740F2026386F9E0009ABBA /* GameViewController.swift */,
+				72740F2226386F9E0009ABBA /* Main.storyboard */,
+				72740F2526386F9F0009ABBA /* Assets.xcassets */,
+				72740F2726386F9F0009ABBA /* Info.plist */,
+			);
+			path = Arkanoid;
+			sourceTree = "<group>";
+		};
+		72E6465B265268A100A6AB6D /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				72E6465C265268E100A6AB6D /* iomanoid.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		72740F1426386F9E0009ABBA /* Arkanoid */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 72740F4026386F9F0009ABBA /* Build configuration list for PBXNativeTarget "Arkanoid" */;
+			buildPhases = (
+				72740F1126386F9E0009ABBA /* Sources */,
+				72740F1226386F9E0009ABBA /* Frameworks */,
+				72740F1326386F9E0009ABBA /* Resources */,
+				727F6C6A2653C2570086F931 /* Run Swiftlint */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Arkanoid;
+			productName = Arkanoid;
+			productReference = 72740F1526386F9E0009ABBA /* Arkanoid.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		72740F0D26386F9D0009ABBA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					72740F1426386F9E0009ABBA = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
+			};
+			buildConfigurationList = 72740F1026386F9D0009ABBA /* Build configuration list for PBXProject "Arkanoid" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 72740F0C26386F9D0009ABBA;
+			productRefGroup = 72740F1626386F9E0009ABBA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				72740F1426386F9E0009ABBA /* Arkanoid */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		72740F1326386F9E0009ABBA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72740F2426386F9E0009ABBA /* Main.storyboard in Resources */,
+				72E6465D265268E100A6AB6D /* iomanoid.ttf in Resources */,
+				72740F1B26386F9E0009ABBA /* GameScene.sks in Resources */,
+				72740F2626386F9F0009ABBA /* Assets.xcassets in Resources */,
+				72740F1D26386F9E0009ABBA /* Actions.sks in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		727F6C6A2653C2570086F931 /* Run Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Swiftlint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		72740F1126386F9E0009ABBA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72740F1F26386F9E0009ABBA /* GameScene.swift in Sources */,
+				72740F2126386F9E0009ABBA /* GameViewController.swift in Sources */,
+				72740F1926386F9E0009ABBA /* AppDelegate.swift in Sources */,
+				72B397D0264449DA002936DE /* GameScene+PhysicsContacts.swift in Sources */,
+				72B397C8264449B2002936DE /* GameScene+Creations.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		72740F2226386F9E0009ABBA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				72740F2326386F9E0009ABBA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		72740F3E26386F9F0009ABBA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		72740F3F26386F9F0009ABBA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		72740F4126386F9F0009ABBA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4V4P52SXM6;
+				INFOPLIST_FILE = Arkanoid/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = NilBaro.Arkanoid;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		72740F4226386F9F0009ABBA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4V4P52SXM6;
+				INFOPLIST_FILE = Arkanoid/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = NilBaro.Arkanoid;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		72740F1026386F9D0009ABBA /* Build configuration list for PBXProject "Arkanoid" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				72740F3E26386F9F0009ABBA /* Debug */,
+				72740F3F26386F9F0009ABBA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		72740F4026386F9F0009ABBA /* Build configuration list for PBXNativeTarget "Arkanoid" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				72740F4126386F9F0009ABBA /* Debug */,
+				72740F4226386F9F0009ABBA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 72740F0D26386F9D0009ABBA /* Project object */;
+}
