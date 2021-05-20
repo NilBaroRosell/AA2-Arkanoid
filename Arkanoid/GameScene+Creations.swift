@@ -236,7 +236,11 @@ extension GameScene {
         self.highScoreTitleLabel.zPosition = 1
         self.addChild(self.highScoreTitleLabel)
 
-        self.highScoreLabel = SKLabelNode(text: "\(self.currentHighScore)")
+        guard  let highScore = UserDefaults.standard.value(forKey: self.highScoreKey) as? Int else {
+            self.highScoreLabel = SKLabelNode(text: "\(self.currentHighScore)")
+            return
+        }            
+        self.highScoreLabel = SKLabelNode(text: "\(highScore)")
         self.highScoreLabel.fontName = "iomanoid"
         self.highScoreLabel.fontColor = UIColor.white
         self.highScoreLabel.position = CGPoint(x: ((self.size.width / 2) - 150), y: (self.size.height / 2) - 75)

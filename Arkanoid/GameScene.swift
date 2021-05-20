@@ -29,6 +29,8 @@ class GameScene: SKScene {
 
     var timerPU: Timer?
 
+    var highScoreKey: String = "HighScore"
+    
     var currentHighScore: Int = 0
     var currentScore: Int = 0
     var currentLifes: Int = 3
@@ -205,7 +207,20 @@ extension GameScene {
             self.currentLifes -= 1
             self.lifesLabel.text = "\(self.currentLifes)"
         } else {
-            print("DEAD, BITCH")
+            updateHighScore(self.currentScore)
         }
+    }
+    
+    func updateHighScore(_ score: Int){
+        guard  let highScore = UserDefaults.standard.value(forKey: self.highScoreKey) as? Int else {
+            self.currentHighScore = score
+            UserDefaults.standard.setValue(score, forKey: self.highScoreKey)
+            return
+        } //posar en constant
+        
+        
+        self.currentHighScore = max(score, highScore)
+        //actualitzar label
+        UserDefaults.standard.setValue(self.currentHighScore, forKey: self.highScoreKey)
     }
 }
