@@ -116,6 +116,8 @@ extension GameScene {
         self.ball.physicsBody?.friction = 0.0
         self.ball.physicsBody?.linearDamping = 0.0
         self.ball.physicsBody?.contactTestBitMask = 0x0000_1111
+        self.ball.physicsBody?.collisionBitMask = 0x0000_1111
+        self.ball.physicsBody?.categoryBitMask = 0x0000_0111
     }
 
     func addBigBall() {
@@ -277,6 +279,7 @@ extension GameScene {
         self.bigBallPU.physicsBody?.linearDamping = 0.0
         self.bigBallPU.physicsBody?.contactTestBitMask = 0x0001_1000
         self.bigBallPU.physicsBody?.collisionBitMask = 0x0001_1000
+        self.bigBallPU.physicsBody?.categoryBitMask = 0x0010_0000
     }
 
     func addLongBarPU(_ brickPosition: CGPoint) {
@@ -295,6 +298,7 @@ extension GameScene {
         self.longBarPU.physicsBody?.linearDamping = 0.0
         self.longBarPU.physicsBody?.contactTestBitMask = 0x0001_1000
         self.longBarPU.physicsBody?.collisionBitMask = 0x0001_1000
+        self.longBarPU.physicsBody?.categoryBitMask = 0x0010_0000
     }
 
     func addLifePU(_ brickPosition: CGPoint) {
@@ -313,6 +317,7 @@ extension GameScene {
         self.lifePU.physicsBody?.linearDamping = 0.0
         self.lifePU.physicsBody?.contactTestBitMask = 0x0001_1000
         self.lifePU.physicsBody?.collisionBitMask = 0x0001_1000
+        self.lifePU.physicsBody?.categoryBitMask = 0x0010_0000
     }
 
     func addTiltMovementPU(_ brickPosition: CGPoint) {
@@ -331,6 +336,7 @@ extension GameScene {
         self.tiltMovementPU.physicsBody?.linearDamping = 0.0
         self.tiltMovementPU.physicsBody?.contactTestBitMask = 0x0001_1000
         self.tiltMovementPU.physicsBody?.collisionBitMask = 0x0001_1000
+        self.tiltMovementPU.physicsBody?.categoryBitMask = 0x0010_0000
     }
 
     func addReverseMovementPU(_ brickPosition: CGPoint) {
@@ -349,12 +355,13 @@ extension GameScene {
         self.reverseMovementPU.physicsBody?.linearDamping = 0.0
         self.reverseMovementPU.physicsBody?.contactTestBitMask = 0x0001_1000
         self.reverseMovementPU.physicsBody?.collisionBitMask = 0x0001_1000
+        self.reverseMovementPU.physicsBody?.categoryBitMask = 0x0010_0000
     }
 
     func aux() {
         self.tiltMovementPU = SKSpriteNode(imageNamed: "RedPowerUp")
         self.tiltMovementPU.name = "PUtiltMovement"
-        self.tiltMovementPU.position  = CGPoint(x: 0, y: 0)
+        self.tiltMovementPU.position  = CGPoint(x: 0, y: self.size.width / 2 - 150)
         self.tiltMovementPU.zPosition = 1
         self.tiltMovementPU.size = CGSize(width: 75, height: 25)
         self.addChild(self.tiltMovementPU)
@@ -367,5 +374,6 @@ extension GameScene {
         self.tiltMovementPU.physicsBody?.linearDamping = 0.0
         self.tiltMovementPU.physicsBody?.contactTestBitMask = 0x0001_1000
         self.tiltMovementPU.physicsBody?.collisionBitMask = 0x0001_1000
+        self.tiltMovementPU.physicsBody?.categoryBitMask = 0x0010_0000
     }
 }

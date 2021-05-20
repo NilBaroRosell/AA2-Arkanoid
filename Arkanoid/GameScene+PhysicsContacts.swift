@@ -167,9 +167,9 @@ extension GameScene: SKPhysicsContactDelegate {
                 self.ball.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
                 self.bigBall.isHidden = false
                 self.bigBall.physicsBody?.velocity = velocity
-                action = SKAction.moveTo(x: position.x, duration: 0.01)
+                action = SKAction.moveTo(x: position.x, duration: 0.001)
                 self.bigBall.run(action)
-                action = SKAction.moveTo(y: position.y, duration: 0.01)
+                action = SKAction.moveTo(y: position.y, duration: 0.001)
                 self.bigBall.run(action)
                 self.isBigBall = true
                 checkActivePowerUps("bigBall")
@@ -187,9 +187,9 @@ extension GameScene: SKPhysicsContactDelegate {
                 var action = SKAction.moveTo(x: self.size.width, duration: 0.01)
                 self.bar.run(action)
                 self.longBar.isHidden = false
-                action = SKAction.moveTo(x: position.x, duration: 0.01)
+                action = SKAction.moveTo(x: position.x, duration: 0.001)
                 self.longBar.run(action)
-                action = SKAction.moveTo(y: position.y, duration: 0.01)
+                action = SKAction.moveTo(y: position.y, duration: 0.001)
                 self.longBar.run(action)
                 self.isLongBar = true
                 checkActivePowerUps("longBar")
@@ -231,14 +231,14 @@ extension GameScene: SKPhysicsContactDelegate {
             let velocity = self.bigBall.physicsBody?.velocity ?? CGVector(dx: 0, dy: 0)
             self.bigBall.isHidden = true
             self.bigBall.position.x = -self.size.width
-            var action = SKAction.moveTo(x: -self.size.width, duration: 0.01)
+            var action = SKAction.moveTo(x: -self.size.width, duration: 0.001)
             self.bigBall.run(action)
             self.bigBall.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
             self.ball.isHidden = false
             self.ball.physicsBody?.velocity = velocity
-            action = SKAction.moveTo(x: position.x, duration: 0.01)
+            action = SKAction.moveTo(x: position.x, duration: 0.001)
             self.ball.run(action)
-            action = SKAction.moveTo(y: position.y, duration: 0.01)
+            action = SKAction.moveTo(y: position.y, duration: 0.001)
             self.ball.run(action)
             self.isBigBall = false
         }
@@ -250,12 +250,12 @@ extension GameScene: SKPhysicsContactDelegate {
             let position = self.longBar.position
             self.longBar.isHidden = true
             self.longBar.position.x = self.size.width
-            var action = SKAction.moveTo(x: self.size.width, duration: 0.01)
+            var action = SKAction.moveTo(x: self.size.width, duration: 0.001)
             self.longBar.run(action)
             self.bar.isHidden = false
-            action = SKAction.moveTo(x: position.x, duration: 0.01)
+            action = SKAction.moveTo(x: position.x, duration: 0.001)
             self.bar.run(action)
-            action = SKAction.moveTo(y: position.y, duration: 0.01)
+            action = SKAction.moveTo(y: position.y, duration: 0.001)
             self.bar.run(action)
             self.isLongBar = false
         }
@@ -281,14 +281,14 @@ extension GameScene: SKPhysicsContactDelegate {
             let velocity = self.bigBall.physicsBody?.velocity ?? CGVector(dx: 0, dy: 0)
             self.bigBall.isHidden = true
             self.bigBall.position.x = -self.size.width
-            var action = SKAction.moveTo(x: -self.size.width, duration: 0.01)
+            var action = SKAction.moveTo(x: -self.size.width, duration: 0.001)
             self.bigBall.run(action)
             self.bigBall.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
             self.ball.isHidden = false
             self.ball.physicsBody?.velocity = velocity
-            action = SKAction.moveTo(x: position.x, duration: 0.01)
+            action = SKAction.moveTo(x: position.x, duration: 0.001)
             self.ball.run(action)
-            action = SKAction.moveTo(y: position.y, duration: 0.01)
+            action = SKAction.moveTo(y: position.y, duration: 0.001)
             self.ball.run(action)
             self.isBigBall = false
         }
@@ -296,12 +296,12 @@ extension GameScene: SKPhysicsContactDelegate {
             let position = self.longBar.position
             self.longBar.isHidden = true
             self.longBar.position.x = self.size.width
-            var action = SKAction.moveTo(x: self.size.width, duration: 0.01)
+            var action = SKAction.moveTo(x: self.size.width, duration: 0.001)
             self.longBar.run(action)
             self.bar.isHidden = false
-            action = SKAction.moveTo(x: position.x, duration: 0.01)
+            action = SKAction.moveTo(x: position.x, duration: 0.001)
             self.bar.run(action)
-            action = SKAction.moveTo(y: position.y, duration: 0.01)
+            action = SKAction.moveTo(y: position.y, duration: 0.001)
             self.bar.run(action)
             self.isLongBar = false
         }

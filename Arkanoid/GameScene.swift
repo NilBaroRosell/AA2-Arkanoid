@@ -71,7 +71,7 @@ class GameScene: SKScene {
 
         self.addBottom()
 
-        self.aux()
+        //self.aux()
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
@@ -179,13 +179,13 @@ extension GameScene {
                 let position = CGPoint(x: self.bar.position.x, y: self.barYPositon + 22)
                 self.bigBall.isHidden = true
                 self.bigBall.position.x = -self.size.width
-                var action = SKAction.moveTo(x: -self.size.width, duration: 0.01)
+                var action = SKAction.moveTo(x: -self.size.width, duration: 0.001)
                 self.bigBall.run(action)
                 self.bigBall.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
                 self.ball.isHidden = false
-                action = SKAction.moveTo(x: position.x, duration: 0.01)
+                action = SKAction.moveTo(x: position.x, duration: 0.001)
                 self.ball.run(action)
-                action = SKAction.moveTo(y: position.y, duration: 0.01)
+                action = SKAction.moveTo(y: position.y, duration: 0.001)
                 self.ball.run(action)
                 self.isBigBall = false
             }
@@ -193,12 +193,12 @@ extension GameScene {
                 let position = self.longBar.position
                 self.longBar.isHidden = true
                 self.longBar.position.x = self.size.width
-                var action = SKAction.moveTo(x: self.size.width, duration: 0.01)
+                var action = SKAction.moveTo(x: self.size.width, duration: 0.001)
                 self.longBar.run(action)
                 self.bar.isHidden = false
-                action = SKAction.moveTo(x: position.x, duration: 0.01)
+                action = SKAction.moveTo(x: position.x, duration: 0.001)
                 self.bar.run(action)
-                action = SKAction.moveTo(y: position.y, duration: 0.01)
+                action = SKAction.moveTo(y: position.y, duration: 0.001)
                 self.bar.run(action)
                 self.isLongBar = false
                 self.ball.position = CGPoint(x: position.x, y: self.barYPositon + 22)
