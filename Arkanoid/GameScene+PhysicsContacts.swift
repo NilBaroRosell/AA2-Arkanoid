@@ -206,7 +206,7 @@ extension GameScene: SKPhysicsContactDelegate {
         case "PUtiltMovement":
             self.isTiltMovement = true
             checkActivePowerUps("tiltMovement")
-            self.timerPU = Timer.scheduledTimer(timeInterval: 5,
+            self.timerPU = Timer.scheduledTimer(timeInterval: 10,
                                                          target: self,
                                                          selector: #selector(undoTiltMovement),
                                                          userInfo: nil,
@@ -214,7 +214,7 @@ extension GameScene: SKPhysicsContactDelegate {
         case "PUreverseMovement":
             self.isReverseMovement = true
             checkActivePowerUps("reverseMovement")
-            self.timerPU = Timer.scheduledTimer(timeInterval: 10,
+            self.timerPU = Timer.scheduledTimer(timeInterval: 15,
                                                          target: self,
                                                          selector: #selector(undoReverseMovement),
                                                          userInfo: nil,

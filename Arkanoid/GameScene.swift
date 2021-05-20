@@ -71,9 +71,10 @@ class GameScene: SKScene {
 
         self.addBottom()
 
-        //self.aux()
-    }
+        self.aux()
 
+        self.motionManager.startAccelerometerUpdates()
+    }
     override func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
         if let touch = touches.first {
             self.barTouch = touch
@@ -94,13 +95,13 @@ class GameScene: SKScene {
             }
         }
     }
-
+    
     override func touchesMoved(_ touches: Set<UITouch>, with _: UIEvent?) {
         guard let barTouch = self.barTouch else { return }
         guard let touchIndex = touches.firstIndex(of: barTouch) else { return }
-
+        
         let touch = touches[touchIndex]
-
+        
         if !isTiltMovement {
             let newPosition = touch.location(in: self)
             let action: SKAction
@@ -132,7 +133,7 @@ class GameScene: SKScene {
         self.barTouch = nil
     }
 
-    override func update(_: TimeInterval) {
+    override func update(_ currentTime: TimeInterval) {
         if self.isDead && self.ball.position != CGPoint(x: 0, y: self.barYPositon + 22) {
             self.resetPosition()
             self.isDead = false
@@ -152,18 +153,6 @@ class GameScene: SKScene {
             if let accelerometerData = self.motionManager.accelerometerData {
                 print("ENTRA")
                 let changeX = CGFloat(accelerometerData.acceleration.x) * (self.size.width/2)
-                /*guard self.initialTilt != 0 else {
-                    self.initialTilt = accelerometerData.acceleration.x
-                    return
-                }
-                guard self.pilotNode.position.y + changeY >= -200 else
-                {
-                    return
-                }
-                guard self.pilotNode.position.y + changeY <= 200 else
-                {
-                    return
-                }*/
                 let action = SKAction.moveTo(x: changeX, duration: 0.05)
                 action.timingMode = .easeInEaseOut
                 self.bar.run(action)
