@@ -71,7 +71,7 @@ class GameScene: SKScene {
 
         self.addBottom()
 
-        self.aux()
+        //self.aux()
 
         self.motionManager.startAccelerometerUpdates()
     }
