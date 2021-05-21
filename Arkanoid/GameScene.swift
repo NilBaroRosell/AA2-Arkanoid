@@ -47,6 +47,7 @@ class GameScene: SKScene {
     var currentHighScore: Int = 0
     var currentScore: Int = 0
     var currentLifes: Int = 3
+    var destroyedBricks: Int = 0
 
     var barYPositon: CGFloat = 0.0
     var sizeW: CGFloat = 0
@@ -73,7 +74,7 @@ class GameScene: SKScene {
         self.addName()
         self.addPlayButton()
         self.addExitButton()
-        
+
         self.addFinalScore()
         self.addNewPersonalBest()
         self.addPlayAgain()
@@ -91,7 +92,7 @@ class GameScene: SKScene {
         self.addBall()
         self.addBigBall()
 
-        self.addBricks(at: 100)
+        self.addBricks()
 
         self.physicsWorld.contactDelegate = self
 
@@ -100,8 +101,6 @@ class GameScene: SKScene {
         self.addHighScoreLabels()
 
         self.addBottom()
-
-        //self.aux()
 
         self.motionManager.startAccelerometerUpdates()
 
@@ -130,7 +129,7 @@ class GameScene: SKScene {
                 }
             } else if self.isBlocked, self.isMenu {
                 let position = touch.location(in: self)
-                if position.x > -100, position.x < 100, position.y > -50, position.y < 150 {
+                if position.x > -100, position.x < 100, position.y > -100, position.y < 100 {
                     self.startGame()
                 } else if position.x > -100, position.x < 100, position.y > -350, position.y < -150 {
                     self.exitButtonPressed()
@@ -140,7 +139,7 @@ class GameScene: SKScene {
                 if position.x > -75, position.x < 75, position.y > -250, position.y < 100 {
                     self.startGame()
                 } else if position.x > -75, position.x < 75, position.y > -400, position.y < -250 {
-                    self.exitButtonPressed()
+                    self.showMenu()
                 }
             }
         }
@@ -184,26 +183,47 @@ class GameScene: SKScene {
     }
 
     override func update(_ currentTime: TimeInterval) {
-        if self.isDead && self.ball.position != CGPoint(x: 0, y: self.barYPositon + 22) {
-            self.resetPosition()
-            self.isDead = false
-        }
-        if self.isLongBar {
-            if self.longBar.position.y != self.barYPositon {
-                self.longBar.position.y = self.barYPositon
+        if self.destroyedBricks >= 40, !self.isEndGame {
+            self.updateHighScore(self.currentScore)
+            if self.isBigBall {
+                self.bigBall.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+            } else {
+                self.ball.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
             }
+            self.bigBallPU?.removeFromParent()
+            self.longBarPU?.removeFromParent()
+            self.lifePU?.removeFromParent()
+            self.tiltMovementPU?.removeFromParent()
+            self.reverseMovementPU?.removeFromParent()
+            self.isBlocked = true
+            self.isEndGame = true
+            self.timer = Timer.scheduledTimer(timeInterval: 2,
+                                              target: self,
+                                              selector: #selector(self.showPlayAgainMenu),
+                                              userInfo: nil,
+                                              repeats: false)
         } else {
-            if self.bar.position.y != self.barYPositon {
-                self.bar.position.y = self.barYPositon
+            if self.isDead && self.ball.position != CGPoint(x: 0, y: self.barYPositon + 22) {
+                self.resetPosition()
+                self.isDead = false
             }
-        }
+            if self.isLongBar {
+                if self.longBar.position.y != self.barYPositon {
+                    self.longBar.position.y = self.barYPositon
+                }
+            } else {
+                if self.bar.position.y != self.barYPositon {
+                    self.bar.position.y = self.barYPositon
+                }
+            }
 
-        if self.isTiltMovement {
-            if let accelerometerData = self.motionManager.accelerometerData {
-                let changeX = CGFloat(accelerometerData.acceleration.x) * (self.size.width/2)
-                let action = SKAction.moveTo(x: changeX, duration: 0.05)
-                action.timingMode = .easeInEaseOut
-                self.bar.run(action)
+            if self.isTiltMovement {
+                if let accelerometerData = self.motionManager.accelerometerData {
+                    let changeX = CGFloat(accelerometerData.acceleration.x) * (self.size.width/2)
+                    let action = SKAction.moveTo(x: changeX, duration: 0.05)
+                    action.timingMode = .easeInEaseOut
+                    self.bar.run(action)
+                }
             }
         }
     }
@@ -217,6 +237,12 @@ extension GameScene {
         self.nameLabel.isHidden = true
         self.playButtonLabel.isHidden = false
         self.exitButtonLabel.isHidden = false
+        self.finalScoreLabel.isHidden = true
+        self.newPersonalRecordLabel.isHidden = true
+        self.playAgainLabel.isHidden = true
+        self.yesLabel.isHidden = true
+        self.noLabel.isHidden = true
+        self.isEndGame = false
         self.isMenu = true
     }
 
@@ -262,55 +288,30 @@ extension GameScene {
 
     func resetPosition() {
         if self.currentLifes > 0 {
-            if self.isBigBall {
-                let position = CGPoint(x: self.bar.position.x, y: self.barYPositon + 22)
-                self.bigBall.isHidden = true
-                self.bigBall.position.x = -self.size.width
-                var action = SKAction.moveTo(x: -self.size.width, duration: 0.001)
-                self.bigBall.run(action)
-                self.bigBall.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-                self.ball.isHidden = false
-                action = SKAction.moveTo(x: position.x, duration: 0.001)
-                self.ball.run(action)
-                action = SKAction.moveTo(y: position.y, duration: 0.001)
-                self.ball.run(action)
-                self.isBigBall = false
-            }
-            if self.isLongBar {
-                let position = self.longBar.position
-                self.longBar.isHidden = true
-                self.longBar.position.x = self.size.width
-                var action = SKAction.moveTo(x: self.size.width, duration: 0.001)
-                self.longBar.run(action)
-                self.bar.isHidden = false
-                action = SKAction.moveTo(x: position.x, duration: 0.001)
-                self.bar.run(action)
-                action = SKAction.moveTo(y: position.y, duration: 0.001)
-                self.bar.run(action)
-                self.isLongBar = false
-                self.ball.position = CGPoint(x: position.x, y: self.barYPositon + 22)
-            } else {
-                self.ball.position = CGPoint(x: self.bar.position.x, y: self.barYPositon + 22)
-            }
+            self.positions()
             let random = Int.random(in: 1...2)
             if random == 1 {
                 self.ball.physicsBody?.velocity = CGVector(dx: 200, dy: 600)
             } else {
                 self.ball.physicsBody?.velocity = CGVector(dx: -200, dy: 600)
             }
-
             self.currentLifes -= 1
             self.lifesLabel.text = "\(self.currentLifes)"
         } else {
-            updateHighScore(self.currentScore)
+            self.updateHighScore(self.currentScore)
             if self.isBigBall {
                 self.bigBall.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
             } else {
                 self.ball.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
             }
+            self.bigBallPU?.removeFromParent()
+            self.longBarPU?.removeFromParent()
+            self.lifePU?.removeFromParent()
+            self.tiltMovementPU?.removeFromParent()
+            self.reverseMovementPU?.removeFromParent()
             self.isBlocked = true
             self.isEndGame = true
-            self.timer = Timer.scheduledTimer(timeInterval: 3,
+            self.timer = Timer.scheduledTimer(timeInterval: 2,
                                               target: self,
                                               selector: #selector(self.showPlayAgainMenu),
                                               userInfo: nil,
@@ -318,8 +319,74 @@ extension GameScene {
         }
     }
 
-    func restart(){
-        print("DO RESTART :)")
+    func positions() {
+        if self.isBigBall {
+            let position = CGPoint(x: self.bar.position.x, y: self.barYPositon + 22)
+            self.bigBall.isHidden = true
+            self.bigBall.position.x = -self.size.width
+            var action = SKAction.moveTo(x: -self.size.width, duration: 0.001)
+            self.bigBall.run(action)
+            self.bigBall.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+            self.ball.isHidden = false
+            action = SKAction.moveTo(x: position.x, duration: 0.001)
+            self.ball.run(action)
+            action = SKAction.moveTo(y: position.y, duration: 0.001)
+            self.ball.run(action)
+            self.isBigBall = false
+        }
+        if self.isLongBar {
+            let position = self.longBar.position
+            self.longBar.isHidden = true
+            self.longBar.position.x = self.size.width
+            var action = SKAction.moveTo(x: self.size.width, duration: 0.001)
+            self.longBar.run(action)
+            self.bar.isHidden = false
+            action = SKAction.moveTo(x: position.x, duration: 0.001)
+            self.bar.run(action)
+            action = SKAction.moveTo(y: position.y, duration: 0.001)
+            self.bar.run(action)
+            self.isLongBar = false
+            self.ball.position = CGPoint(x: position.x, y: self.barYPositon + 22)
+        } else {
+            self.ball.position = CGPoint(x: self.bar.position.x, y: self.barYPositon + 22)
+        }
+    }
+
+    func restart() {
+        self.positions()
+        self.deleteBricksAndPowerUps()
+        self.ball.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+        self.isTiltMovement = false
+        self.isReverseMovement = false
+        self.currentScore = 0
+        self.scoreLabel.text = "\(self.currentScore)"
+        self.currentLifes = 3
+        self.lifesLabel.text = "\(self.currentLifes)"
+        self.destroyedBricks = 0
+    }
+
+    func deleteBricksAndPowerUps() {
+        for brick in 0 ... 7 {
+            self.childNode(withName: "brick\(brick + 1)\(1)")?.removeFromParent()
+        }
+        for brick in 0 ... 7 {
+            self.childNode(withName: "brick\(brick + 1)\(2)")?.removeFromParent()
+        }
+        for brick in 0 ... 7 {
+            self.childNode(withName: "brick\(brick + 1)\(3)")?.removeFromParent()
+        }
+        for brick in 0 ... 7 {
+            self.childNode(withName: "brick\(brick + 1)\(4)")?.removeFromParent()
+        }
+        for brick in 0 ... 7 {
+            self.childNode(withName: "brick\(brick + 1)\(5)")?.removeFromParent()
+        }
+        self.childNode(withName: "PUbigBall")?.removeFromParent()
+        self.childNode(withName: "PUlongBar")?.removeFromParent()
+        self.childNode(withName: "PUlife")?.removeFromParent()
+        self.childNode(withName: "PUtiltMovement")?.removeFromParent()
+        self.childNode(withName: "PUreverseMovement")?.removeFromParent()
+        self.addBricks()
     }
 
     func updateHighScore(_ score: Int) {

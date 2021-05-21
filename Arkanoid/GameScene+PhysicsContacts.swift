@@ -30,8 +30,9 @@ extension GameScene: SKPhysicsContactDelegate {
                 brickLogic(nameA, nodeA.position)
             } else {
                 nodeB.removeFromParent()
-                brickLogic(nameB, nodeA.position)
+                brickLogic(nameB, nodeB.position)
             }
+            self.destroyedBricks += 1
             return
         }
 

@@ -35,7 +35,7 @@ extension GameScene {
         self.playButtonLabel.fontName = "iomanoid"
         self.playButtonLabel.fontColor = UIColor.white
         self.playButtonLabel.fontSize = 100
-        self.playButtonLabel.position = CGPoint(x: 0, y: 0)
+        self.playButtonLabel.position = CGPoint(x: 0, y: -50)
         self.playButtonLabel.zPosition = 3
         self.addChild(self.playButtonLabel)
         self.playButtonLabel.isHidden = true
@@ -244,7 +244,7 @@ extension GameScene {
         self.bigBall.physicsBody?.contactTestBitMask = 0x0000_1111
     }
 
-    func addBricks(at _: CGFloat) {
+    func addBricks() {
         let startX = -(self.size.width / 2) + 85
         var startY = (self.size.height / 2) - 200
         var auxNum: Int
