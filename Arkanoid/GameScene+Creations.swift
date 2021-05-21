@@ -2,6 +2,111 @@ import GameplayKit
 import SpriteKit
 
 extension GameScene {
+    func addBlackBackground() {
+        self.blackBackground = SKSpriteNode(imageNamed: "BlackBackground")
+        self.blackBackground.name = "blackBackground"
+        self.blackBackground.size = CGSize(width: self.size.width, height: self.size.height)
+        self.blackBackground.position = CGPoint(x: 0, y: 0)
+        self.blackBackground.zPosition = 2
+        self.addChild(self.blackBackground)
+    }
+
+    func addLogo() {
+        self.logo = SKSpriteNode(imageNamed: "ArkanoidLogo")
+        self.logo.name = "logo"
+        self.logo.size = CGSize(width: (2/3) * self.size.width, height: self.size.height/6)
+        self.logo.position = CGPoint(x: 0, y: 350)
+        self.logo.zPosition = 3
+        self.addChild(self.logo)
+    }
+
+    func addName() {
+        self.nameLabel = SKLabelNode(text: "BY NIL BARO")
+        self.nameLabel.fontName = "iomanoid"
+        self.nameLabel.fontColor = UIColor.white
+        self.nameLabel.fontSize = 75
+        self.nameLabel.position = CGPoint(x: 0, y: -100)
+        self.nameLabel.zPosition = 3
+        self.addChild(self.nameLabel)
+    }
+
+    func addPlayButton() {
+        self.playButtonLabel = SKLabelNode(text: "PLAY")
+        self.playButtonLabel.fontName = "iomanoid"
+        self.playButtonLabel.fontColor = UIColor.white
+        self.playButtonLabel.fontSize = 100
+        self.playButtonLabel.position = CGPoint(x: 0, y: 0)
+        self.playButtonLabel.zPosition = 3
+        self.addChild(self.playButtonLabel)
+        self.playButtonLabel.isHidden = true
+    }
+
+    func addExitButton() {
+        self.exitButtonLabel = SKLabelNode(text: "EXIT")
+        self.exitButtonLabel.fontName = "iomanoid"
+        self.exitButtonLabel.fontColor = UIColor.white
+        self.exitButtonLabel.fontSize = 100
+        self.exitButtonLabel.position = CGPoint(x: 0, y: -300)
+        self.exitButtonLabel.zPosition = 3
+        self.addChild(self.exitButtonLabel)
+        self.exitButtonLabel.isHidden = true
+    }
+
+    func addFinalScore() {
+        self.finalScoreLabel = SKLabelNode(text: "YOUR FINAL SCORE IS: 5555")
+        self.finalScoreLabel.fontName = "iomanoid"
+        self.finalScoreLabel.fontColor = UIColor.red
+        self.finalScoreLabel.fontSize = 60
+        self.finalScoreLabel.position = CGPoint(x: 0, y: 350)
+        self.finalScoreLabel.zPosition = 3
+        self.addChild(self.finalScoreLabel)
+        self.finalScoreLabel.isHidden = true
+    }
+
+    func addNewPersonalBest() {
+        self.newPersonalRecordLabel = SKLabelNode(text: "NEW PERSONAL RECORD!")
+        self.newPersonalRecordLabel.fontName = "iomanoid"
+        self.newPersonalRecordLabel.fontColor = UIColor.red
+        self.newPersonalRecordLabel.fontSize = 60
+        self.newPersonalRecordLabel.position = CGPoint(x: 0, y: 200)
+        self.newPersonalRecordLabel.zPosition = 3
+        self.addChild(self.newPersonalRecordLabel)
+        self.newPersonalRecordLabel.isHidden = true
+    }
+
+    func addPlayAgain() {
+        self.playAgainLabel = SKLabelNode(text: "DO YOU WANT TO PLAY AGAIN?")
+        self.playAgainLabel.fontName = "iomanoid"
+        self.playAgainLabel.fontColor = UIColor.white
+        self.playAgainLabel.fontSize = 60
+        self.playAgainLabel.position = CGPoint(x: 0, y: -50)
+        self.playAgainLabel.zPosition = 3
+        self.addChild(self.playAgainLabel)
+        self.playAgainLabel.isHidden = true
+    }
+
+    func addYes() {
+        self.yesLabel = SKLabelNode(text: "YES")
+        self.yesLabel.fontName = "iomanoid"
+        self.yesLabel.fontColor = UIColor.white
+        self.yesLabel.fontSize = 60
+        self.yesLabel.position = CGPoint(x: 0, y: -200)
+        self.yesLabel.zPosition = 3
+        self.addChild(self.yesLabel)
+        self.yesLabel.isHidden = true
+    }
+
+    func addNo() {
+        self.noLabel = SKLabelNode(text: "NO")
+        self.noLabel.fontName = "iomanoid"
+        self.noLabel.fontColor = UIColor.white
+        self.noLabel.fontSize = 60
+        self.noLabel.position = CGPoint(x: 0, y: -350)
+        self.noLabel.zPosition = 3
+        self.addChild(self.noLabel)
+        self.noLabel.isHidden = true
+    }
+
     func addBackground() {
         self.background = SKSpriteNode(imageNamed: "Background")
         self.background.name = "background"
@@ -109,7 +214,7 @@ extension GameScene {
         sizeW = self.ball.size.width
         sizeH = self.ball.size.height
         self.ball.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: sizeW, height: sizeH))
-        self.ball.physicsBody?.velocity = CGVector(dx: 200, dy: 600)
+        self.ball.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         self.ball.physicsBody?.affectedByGravity = false
         self.ball.physicsBody?.allowsRotation = false
         self.ball.physicsBody?.restitution = 1.0
@@ -236,11 +341,12 @@ extension GameScene {
         self.highScoreTitleLabel.zPosition = 1
         self.addChild(self.highScoreTitleLabel)
 
-        guard  let highScore = UserDefaults.standard.value(forKey: self.highScoreKey) as? Int else {
+        if let highScore = UserDefaults.standard.value(forKey: self.highScoreKey) as? Int {
+            self.highScoreLabel = SKLabelNode(text: "\(highScore)")
+            self.currentHighScore = highScore
+        } else {
             self.highScoreLabel = SKLabelNode(text: "\(self.currentHighScore)")
-            return
-        }            
-        self.highScoreLabel = SKLabelNode(text: "\(highScore)")
+        }
         self.highScoreLabel.fontName = "iomanoid"
         self.highScoreLabel.fontColor = UIColor.white
         self.highScoreLabel.position = CGPoint(x: ((self.size.width / 2) - 150), y: (self.size.height / 2) - 75)
@@ -362,9 +468,9 @@ extension GameScene {
         self.reverseMovementPU.physicsBody?.categoryBitMask = 0x0010_0000
     }
 
-    func aux() {
-        self.tiltMovementPU = SKSpriteNode(imageNamed: "RedPowerUp")
-        self.tiltMovementPU.name = "PUtiltMovement"
+    /*func aux() {
+        self.tiltMovementPU = SKSpriteNode(imageNamed: "BluePowerUp")
+        self.tiltMovementPU.name = "PUlongBar"
         self.tiltMovementPU.position  = CGPoint(x: 0, y: self.size.width / 2 - 150)
         self.tiltMovementPU.zPosition = 1
         self.tiltMovementPU.size = CGSize(width: 75, height: 25)
@@ -379,5 +485,5 @@ extension GameScene {
         self.tiltMovementPU.physicsBody?.contactTestBitMask = 0x0001_1000
         self.tiltMovementPU.physicsBody?.collisionBitMask = 0x0001_1000
         self.tiltMovementPU.physicsBody?.categoryBitMask = 0x0010_0000
-    }
+    }*/
 }

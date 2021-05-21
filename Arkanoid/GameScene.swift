@@ -3,6 +3,8 @@ import SpriteKit
 import CoreMotion
 
 class GameScene: SKScene {
+    var blackBackground: SKSpriteNode!
+    var logo: SKSpriteNode!
     var background: SKSpriteNode!
     var leftBorder: SKSpriteNode!
     var rightBorder: SKSpriteNode!
@@ -20,17 +22,28 @@ class GameScene: SKScene {
     var bottom: SKSpriteNode!
 
     private var barTouch: UITouch?
+    var nameLabel: SKLabelNode!
+    var playButtonLabel: SKLabelNode!
+    var exitButtonLabel: SKLabelNode!
     var highScoreTitleLabel: SKLabelNode!
     var highScoreLabel: SKLabelNode!
     var scoreTitleLabel: SKLabelNode!
     var scoreLabel: SKLabelNode!
     var lifesTitleLabel: SKLabelNode!
     var lifesLabel: SKLabelNode!
+    var finalScoreLabel: SKLabelNode!
+    var newPersonalRecordLabel: SKLabelNode!
+    var playAgainLabel: SKLabelNode!
+    var yesLabel: SKLabelNode!
+    var noLabel: SKLabelNode!
 
+    var timer: Timer?
     var timerPU: Timer?
+    var timerPU2: Timer?
 
     var highScoreKey: String = "HighScore"
-    
+    var lastLongBarPUName: String = ""
+
     var currentHighScore: Int = 0
     var currentScore: Int = 0
     var currentLifes: Int = 3
@@ -41,6 +54,9 @@ class GameScene: SKScene {
 
     var lastVelocity: CGVector = CGVector(dx: 0, dy: 0)
 
+    var isBlocked: Bool = true
+    var isMenu: Bool = false
+    var isEndGame: Bool = false
     var isDead: Bool = false
     var isLongBar: Bool = false
     var isBigBall: Bool = false
@@ -51,6 +67,18 @@ class GameScene: SKScene {
 
     override func didMove(to _: SKView) {
         self.backgroundColor = .black
+
+        self.addBlackBackground()
+        self.addLogo()
+        self.addName()
+        self.addPlayButton()
+        self.addExitButton()
+        
+        self.addFinalScore()
+        self.addNewPersonalBest()
+        self.addPlayAgain()
+        self.addYes()
+        self.addNo()
 
         self.addBackground()
         self.addLeftBorder()
@@ -76,11 +104,17 @@ class GameScene: SKScene {
         //self.aux()
 
         self.motionManager.startAccelerometerUpdates()
+
+        self.timer = Timer.scheduledTimer(timeInterval: 3,
+                                          target: self,
+                                          selector: #selector(self.showMenu),
+                                          userInfo: nil,
+                                          repeats: false)
     }
     override func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
         if let touch = touches.first {
             self.barTouch = touch
-            if !isTiltMovement {
+            if !self.isTiltMovement, !self.isBlocked {
                 let newPosition = touch.location(in: self)
                 let action: SKAction
                 if self.isReverseMovement {
@@ -94,17 +128,31 @@ class GameScene: SKScene {
                 } else {
                     self.bar.run(action)
                 }
+            } else if self.isBlocked, self.isMenu {
+                let position = touch.location(in: self)
+                if position.x > -100, position.x < 100, position.y > -50, position.y < 150 {
+                    self.startGame()
+                } else if position.x > -100, position.x < 100, position.y > -350, position.y < -150 {
+                    self.exitButtonPressed()
+                }
+            } else if self.isBlocked, self.isEndGame {
+                let position = touch.location(in: self)
+                if position.x > -75, position.x < 75, position.y > -250, position.y < 100 {
+                    self.startGame()
+                } else if position.x > -75, position.x < 75, position.y > -400, position.y < -250 {
+                    self.exitButtonPressed()
+                }
             }
         }
     }
-    
+
     override func touchesMoved(_ touches: Set<UITouch>, with _: UIEvent?) {
         guard let barTouch = self.barTouch else { return }
         guard let touchIndex = touches.firstIndex(of: barTouch) else { return }
-        
+
         let touch = touches[touchIndex]
-        
-        if !isTiltMovement {
+
+        if !self.isTiltMovement, !self.isBlocked {
             let newPosition = touch.location(in: self)
             let action: SKAction
             if self.isReverseMovement {
@@ -151,9 +199,7 @@ class GameScene: SKScene {
         }
 
         if self.isTiltMovement {
-            print("TILT")
             if let accelerometerData = self.motionManager.accelerometerData {
-                print("ENTRA")
                 let changeX = CGFloat(accelerometerData.acceleration.x) * (self.size.width/2)
                 let action = SKAction.moveTo(x: changeX, duration: 0.05)
                 action.timingMode = .easeInEaseOut
@@ -164,6 +210,56 @@ class GameScene: SKScene {
 }
 
 extension GameScene {
+    @objc
+    private func showMenu() {
+        self.blackBackground.isHidden = false
+        self.logo.isHidden = false
+        self.nameLabel.isHidden = true
+        self.playButtonLabel.isHidden = false
+        self.exitButtonLabel.isHidden = false
+        self.isMenu = true
+    }
+
+    func startGame() {
+        self.blackBackground.isHidden = true
+        self.logo.isHidden = true
+        self.nameLabel.isHidden = true
+        self.playButtonLabel.isHidden = true
+        self.exitButtonLabel.isHidden = true
+        self.finalScoreLabel.isHidden = true
+        self.newPersonalRecordLabel.isHidden = true
+        self.playAgainLabel.isHidden = true
+        self.yesLabel.isHidden = true
+        self.noLabel.isHidden = true
+        self.isBlocked = false
+        self.isMenu = false
+        self.isEndGame = false
+        let random = Int.random(in: 1...2)
+        if random == 1 {
+            self.ball.physicsBody?.velocity = CGVector(dx: 200, dy: 600)
+        } else {
+            self.ball.physicsBody?.velocity = CGVector(dx: -200, dy: 600)
+        }
+    }
+
+    func exitButtonPressed() {
+        exit(0)
+    }
+
+    @objc
+    private func showPlayAgainMenu() {
+        self.blackBackground.isHidden = false
+        self.finalScoreLabel.isHidden = false
+        self.finalScoreLabel.text = "YOUR FINAL SCORE IS: \(self.currentScore)"
+        if self.currentScore == self.currentHighScore {
+            self.newPersonalRecordLabel.isHidden = false
+        }
+        self.playAgainLabel.isHidden = false
+        self.yesLabel.isHidden = false
+        self.noLabel.isHidden = false
+        self.restart()
+    }
+
     func resetPosition() {
         if self.currentLifes > 0 {
             if self.isBigBall {
@@ -196,7 +292,6 @@ extension GameScene {
             } else {
                 self.ball.position = CGPoint(x: self.bar.position.x, y: self.barYPositon + 22)
             }
-            print(self.ball.position)
             let random = Int.random(in: 1...2)
             if random == 1 {
                 self.ball.physicsBody?.velocity = CGVector(dx: 200, dy: 600)
@@ -208,19 +303,27 @@ extension GameScene {
             self.lifesLabel.text = "\(self.currentLifes)"
         } else {
             updateHighScore(self.currentScore)
+            if self.isBigBall {
+                self.bigBall.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+            } else {
+                self.ball.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+            }
+            self.isBlocked = true
+            self.isEndGame = true
+            self.timer = Timer.scheduledTimer(timeInterval: 3,
+                                              target: self,
+                                              selector: #selector(self.showPlayAgainMenu),
+                                              userInfo: nil,
+                                              repeats: false)
         }
     }
-    
-    func updateHighScore(_ score: Int){
-        guard  let highScore = UserDefaults.standard.value(forKey: self.highScoreKey) as? Int else {
-            self.currentHighScore = score
-            UserDefaults.standard.setValue(score, forKey: self.highScoreKey)
-            return
-        } //posar en constant
-        
-        
-        self.currentHighScore = max(score, highScore)
-        //actualitzar label
+
+    func restart(){
+        print("DO RESTART :)")
+    }
+
+    func updateHighScore(_ score: Int) {
+        self.currentHighScore = max(score, self.currentHighScore)
         UserDefaults.standard.setValue(self.currentHighScore, forKey: self.highScoreKey)
     }
 }

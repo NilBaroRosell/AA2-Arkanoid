@@ -141,6 +141,7 @@ extension GameScene: SKPhysicsContactDelegate {
             self.addLifePU(position)
         } else if row == 6, column == 2 {
             self.addLongBarPU(position)
+            self.lastLongBarPUName = "1"
         } else if row == 3, column == 2 {
             self.addReverseMovementPU(position)
         } else if row == 8, column == 3 {
@@ -151,6 +152,7 @@ extension GameScene: SKPhysicsContactDelegate {
             self.addLifePU(position)
         } else if row == 2, column == 5 {
             self.addLongBarPU(position)
+            self.lastLongBarPUName = "2"
         }
     }
 
@@ -193,11 +195,19 @@ extension GameScene: SKPhysicsContactDelegate {
                 self.longBar.run(action)
                 self.isLongBar = true
                 checkActivePowerUps("longBar")
-                self.timerPU = Timer.scheduledTimer(timeInterval: 15,
-                                                             target: self,
-                                                             selector: #selector(undoLongBar),
-                                                             userInfo: nil,
-                                                             repeats: false)
+                if self.lastLongBarPUName == "1" {
+                    self.timerPU = Timer.scheduledTimer(timeInterval: 15,
+                                                                 target: self,
+                                                                 selector: #selector(self.undoLongBar),
+                                                                 userInfo: nil,
+                                                                 repeats: false)
+                } else {
+                    self.timerPU2 = Timer.scheduledTimer(timeInterval: 15,
+                                                                 target: self,
+                                                                 selector: #selector(self.undoLongBar2),
+                                                                 userInfo: nil,
+                                                                 repeats: false)
+                }
             }
         case "PUlife":
             self.currentLifes += 1
@@ -214,7 +224,7 @@ extension GameScene: SKPhysicsContactDelegate {
         case "PUreverseMovement":
             self.isReverseMovement = true
             checkActivePowerUps("reverseMovement")
-            self.timerPU = Timer.scheduledTimer(timeInterval: 15,
+            self.timerPU2 = Timer.scheduledTimer(timeInterval: 15,
                                                          target: self,
                                                          selector: #selector(undoReverseMovement),
                                                          userInfo: nil,
@@ -246,7 +256,24 @@ extension GameScene: SKPhysicsContactDelegate {
 
     @objc
     private func undoLongBar() {
-        if isLongBar {
+        if isLongBar, self.lastLongBarPUName == "1" {
+            let position = self.longBar.position
+            self.longBar.isHidden = true
+            self.longBar.position.x = self.size.width
+            var action = SKAction.moveTo(x: self.size.width, duration: 0.001)
+            self.longBar.run(action)
+            self.bar.isHidden = false
+            action = SKAction.moveTo(x: position.x, duration: 0.001)
+            self.bar.run(action)
+            action = SKAction.moveTo(y: position.y, duration: 0.001)
+            self.bar.run(action)
+            self.isLongBar = false
+        }
+    }
+
+    @objc
+    private func undoLongBar2() {
+        if isLongBar, self.lastLongBarPUName == "2" {
             let position = self.longBar.position
             self.longBar.isHidden = true
             self.longBar.position.x = self.size.width
