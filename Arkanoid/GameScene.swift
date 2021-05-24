@@ -69,6 +69,16 @@ class GameScene: SKScene {
 
     private let motionManager = CMMotionManager()
 
+    let barSound = SKAction.playSoundFileNamed("bar sound.wav", waitForCompletion: false)
+    let brickSound = SKAction.playSoundFileNamed("brick sound.wav", waitForCompletion: false)
+    let brickHitSound = SKAction.playSoundFileNamed("brick hit sound.wav", waitForCompletion: false)
+    let deadSound = SKAction.playSoundFileNamed("dead.wav", waitForCompletion: false)
+    let longBarSound = SKAction.playSoundFileNamed("long bar sound.wav", waitForCompletion: false)
+    let lostSound = SKAction.playSoundFileNamed("lost.wav", waitForCompletion: false)
+    let powerupSound = SKAction.playSoundFileNamed("powerup sound.wav", waitForCompletion: false)
+    let startSound = SKAction.playSoundFileNamed("start.wav", waitForCompletion: false)
+    let clickSound = SKAction.playSoundFileNamed("click sound.wav", waitForCompletion: false)
+
     override func didMove(to _: SKView) {
         self.backgroundColor = .black
 
@@ -134,15 +144,19 @@ class GameScene: SKScene {
             } else if self.isBlocked, self.isMenu {
                 let position = touch.location(in: self)
                 if position.x > -100, position.x < 100, position.y > -100, position.y < 100 {
+                    run(self.clickSound)
                     self.startGame()
                 } else if position.x > -100, position.x < 100, position.y > -350, position.y < -150 {
+                    run(self.clickSound)
                     self.exitButtonPressed()
                 }
             } else if self.isBlocked, self.isEndGame {
                 let position = touch.location(in: self)
                 if position.x > -75, position.x < 75, position.y > -250, position.y < 100 {
+                    run(self.clickSound)
                     self.startGame()
                 } else if position.x > -75, position.x < 75, position.y > -400, position.y < -250 {
+                    run(self.clickSound)
                     self.showMenu()
                 }
             }
@@ -270,6 +284,7 @@ extension GameScene {
         } else {
             self.ball.physicsBody?.velocity = CGVector(dx: -200, dy: 600)
         }
+        run(self.startSound)
     }
 
     func exitButtonPressed() {
@@ -292,6 +307,7 @@ extension GameScene {
 
     func resetPosition() {
         if self.currentLifes > 0 {
+            run(self.deadSound)
             self.positions()
             let random = Int.random(in: 1...2)
             if random == 1 {
@@ -302,6 +318,7 @@ extension GameScene {
             self.currentLifes -= 1
             self.lifesLabel.text = "\(self.currentLifes)"
         } else {
+            run(self.lostSound)
             self.updateHighScore(self.currentScore)
             if self.isBigBall {
                 self.bigBall.physicsBody?.velocity = CGVector(dx: 0, dy: 0)

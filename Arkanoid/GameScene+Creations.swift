@@ -330,7 +330,7 @@ extension GameScene {
     }
 
     func addLifesLabels() {
-        self.lifesTitleLabel = SKLabelNode(text: "LIFES")
+        self.lifesTitleLabel = SKLabelNode(text: "LIVES")
         self.lifesTitleLabel.fontName = "iomanoid"
         self.lifesTitleLabel.fontColor = UIColor.red
         self.lifesTitleLabel.position = CGPoint(x: 0, y: (self.size.height / 2) - 25)
@@ -493,7 +493,7 @@ extension GameScene {
         var xNum: Int
         var yNum: Int
         var hits: Int
-        
+
         init(xNum: Int, yNum: Int, hits: Int) {
             self.xNum = xNum
             self.yNum = yNum

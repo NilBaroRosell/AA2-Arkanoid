@@ -14,6 +14,15 @@
 		72740F2126386F9E0009ABBA /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72740F2026386F9E0009ABBA /* GameViewController.swift */; };
 		72740F2426386F9E0009ABBA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72740F2226386F9E0009ABBA /* Main.storyboard */; };
 		72740F2626386F9F0009ABBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72740F2526386F9F0009ABBA /* Assets.xcassets */; };
+		729696D9265BE86A00F5A839 /* dead.wav in Resources */ = {isa = PBXBuildFile; fileRef = 729696D1265BE86A00F5A839 /* dead.wav */; };
+		729696DA265BE86A00F5A839 /* lost.wav in Resources */ = {isa = PBXBuildFile; fileRef = 729696D2265BE86A00F5A839 /* lost.wav */; };
+		729696DB265BE86A00F5A839 /* start.wav in Resources */ = {isa = PBXBuildFile; fileRef = 729696D3265BE86A00F5A839 /* start.wav */; };
+		729696DC265BE86A00F5A839 /* brick sound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 729696D4265BE86A00F5A839 /* brick sound.wav */; };
+		729696DE265BE86A00F5A839 /* bar sound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 729696D6265BE86A00F5A839 /* bar sound.wav */; };
+		729696DF265BE86A00F5A839 /* brick hit sound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 729696D7265BE86A00F5A839 /* brick hit sound.wav */; };
+		729696E0265BE86A00F5A839 /* long bar sound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 729696D8265BE86A00F5A839 /* long bar sound.wav */; };
+		729696E4265BEE7300F5A839 /* click sound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 729696E3265BEE7300F5A839 /* click sound.wav */; };
+		729696E6265BEF7D00F5A839 /* powerup sound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 729696E5265BEF7D00F5A839 /* powerup sound.wav */; };
 		72B397C8264449B2002936DE /* GameScene+Creations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B397C7264449B2002936DE /* GameScene+Creations.swift */; };
 		72B397D0264449DA002936DE /* GameScene+PhysicsContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B397CF264449DA002936DE /* GameScene+PhysicsContacts.swift */; };
 		72E6465D265268E100A6AB6D /* iomanoid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 72E6465C265268E100A6AB6D /* iomanoid.ttf */; };
@@ -29,6 +38,15 @@
 		72740F2326386F9E0009ABBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		72740F2526386F9F0009ABBA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		72740F2726386F9F0009ABBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		729696D1265BE86A00F5A839 /* dead.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = dead.wav; path = "../../../../../Downloads/Arkanoid sounds/dead.wav"; sourceTree = "<group>"; };
+		729696D2265BE86A00F5A839 /* lost.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = lost.wav; path = "../../../../../Downloads/Arkanoid sounds/lost.wav"; sourceTree = "<group>"; };
+		729696D3265BE86A00F5A839 /* start.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = start.wav; path = "../../../../../Downloads/Arkanoid sounds/start.wav"; sourceTree = "<group>"; };
+		729696D4265BE86A00F5A839 /* brick sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "brick sound.wav"; path = "../../../../../Downloads/Arkanoid sounds/brick sound.wav"; sourceTree = "<group>"; };
+		729696D6265BE86A00F5A839 /* bar sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "bar sound.wav"; path = "../../../../../Downloads/Arkanoid sounds/bar sound.wav"; sourceTree = "<group>"; };
+		729696D7265BE86A00F5A839 /* brick hit sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "brick hit sound.wav"; path = "../../../../../Downloads/Arkanoid sounds/brick hit sound.wav"; sourceTree = "<group>"; };
+		729696D8265BE86A00F5A839 /* long bar sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "long bar sound.wav"; path = "../../../../../Downloads/Arkanoid sounds/long bar sound.wav"; sourceTree = "<group>"; };
+		729696E3265BEE7300F5A839 /* click sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "click sound.wav"; path = "../../../../../Downloads/NewArkanoidSound/click sound.wav"; sourceTree = "<group>"; };
+		729696E5265BEF7D00F5A839 /* powerup sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "powerup sound.wav"; path = "../../../../../Downloads/SoundArkanoid/powerup sound.wav"; sourceTree = "<group>"; };
 		72B397C7264449B2002936DE /* GameScene+Creations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameScene+Creations.swift"; sourceTree = "<group>"; };
 		72B397CF264449DA002936DE /* GameScene+PhysicsContacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameScene+PhysicsContacts.swift"; sourceTree = "<group>"; };
 		72E6465C265268E100A6AB6D /* iomanoid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iomanoid.ttf; sourceTree = "<group>"; };
@@ -64,6 +82,7 @@
 		72740F1726386F9E0009ABBA /* Arkanoid */ = {
 			isa = PBXGroup;
 			children = (
+				729696D0265BE85200F5A839 /* Sounds */,
 				72E6465B265268A100A6AB6D /* Fonts */,
 				72740F1826386F9E0009ABBA /* AppDelegate.swift */,
 				72740F1A26386F9E0009ABBA /* GameScene.sks */,
@@ -77,6 +96,22 @@
 				72740F2726386F9F0009ABBA /* Info.plist */,
 			);
 			path = Arkanoid;
+			sourceTree = "<group>";
+		};
+		729696D0265BE85200F5A839 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				729696D6265BE86A00F5A839 /* bar sound.wav */,
+				729696D7265BE86A00F5A839 /* brick hit sound.wav */,
+				729696D4265BE86A00F5A839 /* brick sound.wav */,
+				729696E3265BEE7300F5A839 /* click sound.wav */,
+				729696D1265BE86A00F5A839 /* dead.wav */,
+				729696D8265BE86A00F5A839 /* long bar sound.wav */,
+				729696D2265BE86A00F5A839 /* lost.wav */,
+				729696E5265BEF7D00F5A839 /* powerup sound.wav */,
+				729696D3265BE86A00F5A839 /* start.wav */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		72E6465B265268A100A6AB6D /* Fonts */ = {
@@ -145,11 +180,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				729696DA265BE86A00F5A839 /* lost.wav in Resources */,
+				729696D9265BE86A00F5A839 /* dead.wav in Resources */,
 				72740F2426386F9E0009ABBA /* Main.storyboard in Resources */,
+				729696DB265BE86A00F5A839 /* start.wav in Resources */,
 				72E6465D265268E100A6AB6D /* iomanoid.ttf in Resources */,
+				729696DC265BE86A00F5A839 /* brick sound.wav in Resources */,
 				72740F1B26386F9E0009ABBA /* GameScene.sks in Resources */,
+				729696E4265BEE7300F5A839 /* click sound.wav in Resources */,
+				729696DF265BE86A00F5A839 /* brick hit sound.wav in Resources */,
 				72740F2626386F9F0009ABBA /* Assets.xcassets in Resources */,
+				729696E6265BEF7D00F5A839 /* powerup sound.wav in Resources */,
+				729696DE265BE86A00F5A839 /* bar sound.wav in Resources */,
 				72740F1D26386F9E0009ABBA /* Actions.sks in Resources */,
+				729696E0265BE86A00F5A839 /* long bar sound.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

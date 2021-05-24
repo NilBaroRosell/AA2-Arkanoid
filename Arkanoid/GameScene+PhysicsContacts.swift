@@ -23,7 +23,6 @@ extension GameScene: SKPhysicsContactDelegate {
                 updateVelocity(false)
             }
         }
-
         if (oneNodeIsBall || oneNodeIsBigBall), oneNodeIsBrick {
             if nameA.hasPrefix("brick") {
                 brickLogic(nameA, nodeA)
@@ -39,6 +38,7 @@ extension GameScene: SKPhysicsContactDelegate {
             } else {
                 self.longBar.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
             }
+            run(self.barSound)
         }
 
         if (oneNodeIsBall || oneNodeIsBigBall), oneNodeIsBottom {
@@ -122,6 +122,7 @@ extension GameScene: SKPhysicsContactDelegate {
                 for brick in 0 ... self.bricks.count - 1 {
                     print(brick)
                     if self.isBigBall || (self.bricks[brick].xNum == row && self.bricks[brick].yNum == column && self.bricks[brick].hits == 1) {
+                        run(self.brickSound)
                         destroy = true
                     } else if self.bricks[brick].xNum == row, self.bricks[brick].yNum == column, self.bricks[brick].hits == 2 {
                         if column == 5 {
@@ -131,6 +132,7 @@ extension GameScene: SKPhysicsContactDelegate {
                             let aux: SKSpriteNode? = node as? SKSpriteNode
                             aux?.texture = SKTexture(imageNamed: "HitRedBrick")
                         }
+                        run(self.brickHitSound)
                         self.bricks[brick].hits = 1
                     }
                 }
@@ -152,7 +154,7 @@ extension GameScene: SKPhysicsContactDelegate {
             }
 
             self.destroyedBricks += 1
-            
+
             node.removeFromParent()
         }
     }
@@ -201,6 +203,7 @@ extension GameScene: SKPhysicsContactDelegate {
                                                              selector: #selector(undoBigBall),
                                                              userInfo: nil,
                                                              repeats: false)
+                run(self.powerupSound)
             }
         case "PUlongBar":
             if !self.isLongBar {
@@ -229,11 +232,13 @@ extension GameScene: SKPhysicsContactDelegate {
                                                                  userInfo: nil,
                                                                  repeats: false)
                 }
+                run(self.longBarSound)
             }
         case "PUlife":
             self.currentLifes += 1
             self.lifesLabel.text = "\(self.currentLifes)"
             checkActivePowerUps("extraLife")
+            run(self.powerupSound)
         case "PUtiltMovement":
             self.isTiltMovement = true
             checkActivePowerUps("tiltMovement")
@@ -242,6 +247,7 @@ extension GameScene: SKPhysicsContactDelegate {
                                                          selector: #selector(undoTiltMovement),
                                                          userInfo: nil,
                                                          repeats: false)
+            run(self.powerupSound)
         case "PUreverseMovement":
             self.isReverseMovement = true
             checkActivePowerUps("reverseMovement")
@@ -250,6 +256,7 @@ extension GameScene: SKPhysicsContactDelegate {
                                                          selector: #selector(undoReverseMovement),
                                                          userInfo: nil,
                                                          repeats: false)
+            run(self.powerupSound)
         default:
             break
         }
