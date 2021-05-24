@@ -26,13 +26,10 @@ extension GameScene: SKPhysicsContactDelegate {
 
         if (oneNodeIsBall || oneNodeIsBigBall), oneNodeIsBrick {
             if nameA.hasPrefix("brick") {
-                nodeA.removeFromParent()
-                brickLogic(nameA, nodeA.position)
+                brickLogic(nameA, nodeA)
             } else {
-                nodeB.removeFromParent()
-                brickLogic(nameB, nodeB.position)
+                brickLogic(nameB, nodeB)
             }
-            self.destroyedBricks += 1
             return
         }
 
@@ -116,24 +113,47 @@ extension GameScene: SKPhysicsContactDelegate {
         }
     }
 
-    func brickLogic(_ name: String, _ position: CGPoint) {
+    func brickLogic(_ name: String, _ node: SKNode) {
+        var destroy = false
         let column = Int(name.suffix(1)) ?? 0
+        let row = Int(name.suffix(2).prefix(1)) ?? 0
         if column != 0 {
-            self.currentScore += column * 100
-            let row = Int(name.suffix(2).prefix(1)) ?? 0
             if row != 0 {
-                self.releasePowerUpIfNeeded(row, column, position)
+                for brick in 0 ... self.bricks.count - 1 {
+                    print(brick)
+                    if self.isBigBall || (self.bricks[brick].xNum == row && self.bricks[brick].yNum == column && self.bricks[brick].hits == 1) {
+                        destroy = true
+                    } else if self.bricks[brick].xNum == row, self.bricks[brick].yNum == column, self.bricks[brick].hits == 2 {
+                        if column == 5 {
+                            let aux: SKSpriteNode? = node as? SKSpriteNode
+                            aux?.texture = SKTexture(imageNamed: "HitBlueBrick")
+                        } else if column == 4 {
+                            let aux: SKSpriteNode? = node as? SKSpriteNode
+                            aux?.texture = SKTexture(imageNamed: "HitRedBrick")
+                        }
+                        self.bricks[brick].hits = 1
+                    }
+                }
             }
-        }
-
-        if self.isBigBall {
-            self.bigBall.physicsBody?.velocity = self.lastVelocity
         }
 
         self.scoreLabel.text = "\(self.currentScore)"
         if self.currentScore > self.currentHighScore {
             self.currentHighScore = self.currentScore
             self.highScoreLabel.text = "\(self.currentHighScore)"
+        }
+
+        if destroy {
+            self.releasePowerUpIfNeeded(row, column, node.position)
+            self.currentScore += column * 100
+
+            if self.isBigBall {
+                self.bigBall.physicsBody?.velocity = self.lastVelocity
+            }
+
+            self.destroyedBricks += 1
+            
+            node.removeFromParent()
         }
     }
 

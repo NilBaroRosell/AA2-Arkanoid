@@ -54,6 +54,7 @@ class GameScene: SKScene {
     var sizeH: CGFloat = 0
 
     var powerupsPositions: [CGPoint] = []
+    var bricks: [Bricks] = []
 
     var lastVelocity: CGVector = CGVector(dx: 0, dy: 0)
 

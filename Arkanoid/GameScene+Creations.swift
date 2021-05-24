@@ -247,6 +247,7 @@ extension GameScene {
     }
 
     func addBricks() {
+        self.bricks.removeAll()
         let startX = -(self.size.width / 2) + 85
         var startY = (self.size.height / 2) - 200
         var auxNum: Int
@@ -301,6 +302,15 @@ extension GameScene {
         brick.physicsBody?.linearDamping = 0.0
         brick.physicsBody?.categoryBitMask = 0x0000_0010
         self.addChild(brick)
+
+        var newBrick: Bricks
+        if number > 3 {
+        newBrick = Bricks(xNum: secondNumber, yNum: number, hits: 2)
+        } else {
+            newBrick = Bricks(xNum: secondNumber, yNum: number, hits: 1)
+        }
+        self.bricks.append(newBrick)
+        print(self.bricks.count)
     }
 
     func addScoreLabels() {
@@ -476,6 +486,18 @@ extension GameScene {
         for _ in 0 ... 7 {
             position = CGPoint(x: Int.random(in: 1...8), y: Int.random(in: 1...5))
             self.powerupsPositions.append(position)
+        }
+    }
+
+    struct Bricks {
+        var xNum: Int
+        var yNum: Int
+        var hits: Int
+        
+        init(xNum: Int, yNum: Int, hits: Int) {
+            self.xNum = xNum
+            self.yNum = yNum
+            self.hits = hits
         }
     }
 }
