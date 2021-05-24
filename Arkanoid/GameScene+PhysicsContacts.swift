@@ -138,20 +138,20 @@ extension GameScene: SKPhysicsContactDelegate {
     }
 
     func releasePowerUpIfNeeded(_ row: Int, _ column: Int, _ position: CGPoint) {
-        if row == 1, column == 1 {
+        if row == Int(self.powerupsPositions[0].x), column == Int(self.powerupsPositions[0].y) {
             self.addLifePU(position)
-        } else if row == 6, column == 2 {
+        } else if row == Int(self.powerupsPositions[1].x), column == Int(self.powerupsPositions[1].y) {
             self.addLongBarPU(position)
             self.lastLongBarPUName = "1"
-        } else if row == 3, column == 2 {
+        } else if row == Int(self.powerupsPositions[2].x), column == Int(self.powerupsPositions[2].y) {
             self.addReverseMovementPU(position)
-        } else if row == 8, column == 3 {
+        } else if row == Int(self.powerupsPositions[3].x), column == Int(self.powerupsPositions[3].y) {
             self.addBigBallPU(position)
-        } else if row == 6, column == 4 {
+        } else if row == Int(self.powerupsPositions[4].x), column == Int(self.powerupsPositions[4].y) {
             self.addTiltMovementPU(position)
-        } else if row == 4, column == 4 {
+        } else if row == Int(self.powerupsPositions[5].y), column == Int(self.powerupsPositions[5].y) {
             self.addLifePU(position)
-        } else if row == 2, column == 5 {
+        } else if row == Int(self.powerupsPositions[6].x), column == Int(self.powerupsPositions[6].y) {
             self.addLongBarPU(position)
             self.lastLongBarPUName = "2"
         }

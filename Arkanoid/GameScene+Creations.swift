@@ -242,6 +242,8 @@ extension GameScene {
         self.bigBall.physicsBody?.friction = 0.0
         self.bigBall.physicsBody?.linearDamping = 0.0
         self.bigBall.physicsBody?.contactTestBitMask = 0x0000_1111
+        self.bigBall.physicsBody?.collisionBitMask = 0x0000_1111
+        self.bigBall.physicsBody?.categoryBitMask = 0x0000_0111
     }
 
     func addBricks() {
@@ -468,22 +470,12 @@ extension GameScene {
         self.reverseMovementPU.physicsBody?.categoryBitMask = 0x0010_0000
     }
 
-    /*func aux() {
-        self.tiltMovementPU = SKSpriteNode(imageNamed: "BluePowerUp")
-        self.tiltMovementPU.name = "PUlongBar"
-        self.tiltMovementPU.position  = CGPoint(x: 0, y: self.size.width / 2 - 150)
-        self.tiltMovementPU.zPosition = 1
-        self.tiltMovementPU.size = CGSize(width: 75, height: 25)
-        self.addChild(self.tiltMovementPU)
-        sizeW = self.tiltMovementPU.size.width
-        sizeH = self.tiltMovementPU.size.height
-        self.tiltMovementPU.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: sizeW, height: sizeH))
-        self.tiltMovementPU.physicsBody?.allowsRotation = false
-        self.tiltMovementPU.physicsBody?.affectedByGravity = false
-        self.tiltMovementPU.physicsBody?.velocity = CGVector(dx: 0, dy: -400)
-        self.tiltMovementPU.physicsBody?.linearDamping = 0.0
-        self.tiltMovementPU.physicsBody?.contactTestBitMask = 0x0001_1000
-        self.tiltMovementPU.physicsBody?.collisionBitMask = 0x0001_1000
-        self.tiltMovementPU.physicsBody?.categoryBitMask = 0x0010_0000
-    }*/
+    func setPowerupPositions() {
+        self.powerupsPositions.removeAll()
+        var position: CGPoint
+        for _ in 0 ... 7 {
+            position = CGPoint(x: Int.random(in: 1...8), y: Int.random(in: 1...5))
+            self.powerupsPositions.append(position)
+        }
+    }
 }

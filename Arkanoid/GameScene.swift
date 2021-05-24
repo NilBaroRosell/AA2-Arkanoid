@@ -53,6 +53,8 @@ class GameScene: SKScene {
     var sizeW: CGFloat = 0
     var sizeH: CGFloat = 0
 
+    var powerupsPositions: [CGPoint] = []
+
     var lastVelocity: CGVector = CGVector(dx: 0, dy: 0)
 
     var isBlocked: Bool = true
@@ -95,6 +97,7 @@ class GameScene: SKScene {
         self.addBricks()
 
         self.physicsWorld.contactDelegate = self
+        self.setPowerupPositions()
 
         self.addScoreLabels()
         self.addLifesLabels()
@@ -321,7 +324,12 @@ extension GameScene {
 
     func positions() {
         if self.isBigBall {
-            let position = CGPoint(x: self.bar.position.x, y: self.barYPositon + 22)
+            var position = CGPoint(x: self.bar.position.x, y: self.barYPositon + 22)
+            if position.x >= self.size.width/2 {
+                position = CGPoint(x: self.size.width/2 - 50, y: position.y)
+            } else if position.x <= self.size.width/2 {
+                position = CGPoint(x: -self.size.width/2 + 50, y: position.y)
+            }
             self.bigBall.isHidden = true
             self.bigBall.position.x = -self.size.width
             var action = SKAction.moveTo(x: -self.size.width, duration: 0.001)
@@ -333,9 +341,15 @@ extension GameScene {
             action = SKAction.moveTo(y: position.y, duration: 0.001)
             self.ball.run(action)
             self.isBigBall = false
+            self.bar.position = CGPoint(x: position.x, y: self.bar.position.y)
         }
         if self.isLongBar {
-            let position = self.longBar.position
+            var position = self.longBar.position
+            if position.x >= self.size.width/2 {
+                position = CGPoint(x: self.size.width/2 - 50, y: position.y)
+            } else if position.x <= self.size.width/2 {
+                position = CGPoint(x: -self.size.width/2 + 50, y: position.y)
+            }
             self.longBar.isHidden = true
             self.longBar.position.x = self.size.width
             var action = SKAction.moveTo(x: self.size.width, duration: 0.001)
@@ -347,13 +361,22 @@ extension GameScene {
             self.bar.run(action)
             self.isLongBar = false
             self.ball.position = CGPoint(x: position.x, y: self.barYPositon + 22)
+            self.bar.position = CGPoint(x: position.x, y: self.bar.position.y)
         } else {
-            self.ball.position = CGPoint(x: self.bar.position.x, y: self.barYPositon + 22)
+            var position = self.bar.position
+            if position.x >= self.size.width/2 {
+                position = CGPoint(x: self.size.width/2 - 50, y: position.y)
+            } else if position.x <= self.size.width/2 {
+                position = CGPoint(x: -self.size.width/2 + 50, y: position.y)
+            }
+            self.ball.position = CGPoint(x: position.x, y: self.barYPositon + 22)
+            self.bar.position = CGPoint(x: position.x, y: self.bar.position.y)
         }
     }
 
     func restart() {
         self.positions()
+        self.setPowerupPositions()
         self.deleteBricksAndPowerUps()
         self.ball.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         self.isTiltMovement = false
