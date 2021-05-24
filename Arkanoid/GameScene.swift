@@ -328,7 +328,7 @@ extension GameScene {
             var position = CGPoint(x: self.bar.position.x, y: self.barYPositon + 22)
             if position.x >= self.size.width/2 {
                 position = CGPoint(x: self.size.width/2 - 50, y: position.y)
-            } else if position.x <= self.size.width/2 {
+            } else if position.x <= -self.size.width/2 {
                 position = CGPoint(x: -self.size.width/2 + 50, y: position.y)
             }
             self.bigBall.isHidden = true
@@ -348,7 +348,7 @@ extension GameScene {
             var position = self.longBar.position
             if position.x >= self.size.width/2 {
                 position = CGPoint(x: self.size.width/2 - 50, y: position.y)
-            } else if position.x <= self.size.width/2 {
+            } else if position.x <= -self.size.width/2 {
                 position = CGPoint(x: -self.size.width/2 + 50, y: position.y)
             }
             self.longBar.isHidden = true
@@ -367,7 +367,7 @@ extension GameScene {
             var position = self.bar.position
             if position.x >= self.size.width/2 {
                 position = CGPoint(x: self.size.width/2 - 50, y: position.y)
-            } else if position.x <= self.size.width/2 {
+            } else if position.x <= -self.size.width/2 {
                 position = CGPoint(x: -self.size.width/2 + 50, y: position.y)
             }
             self.ball.position = CGPoint(x: position.x, y: self.barYPositon + 22)
